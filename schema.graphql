@@ -1,0 +1,43 @@
+type User {
+    id: ID!
+    username: String!
+    # Add other fields as needed
+}
+
+type Query {
+    currentUser: User! # Define the currentUser field
+    performers(limit: Int, offset: Int): [Performer!]!
+    performances: [Performance!]!
+}
+
+type Mutation {
+    createEvent(input: EventInput!): Event!
+    updateEvent(id: ID!, input: EventInput!): Event!
+    deleteEvent(id: ID!): Boolean!
+}
+
+type Event {
+    id: ID!
+    title: String!
+    description: String
+    startDate: String!
+    endDate: String!
+    location: String
+    performers: [Performer!]!
+}
+
+type Performer {
+    id: ID!
+    name: String!
+    description: String
+    genre: String!
+    contactInformation: String
+    performances: [Performance!]!
+}
+
+type Performance {
+    id: ID!
+    event: Event!
+    performer: Performer!
+    date: String!
+}
